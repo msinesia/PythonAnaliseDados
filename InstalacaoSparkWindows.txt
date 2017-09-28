@@ -1,0 +1,47 @@
+Configure Spark on windows , some error and solution
+
+Step 1 : Download and install latest version of scala
+Step 2 : Download and install latest version of sbt
+Step 3 : download any spark version and extract using linux environment
+Step 4 : Go to the root folder of the spark  and run "sbt package" command
+        This will download few jar file , it may take some time.
+       add proxy in sbtconfig.txt (sbt\conf\sbtconfig.txt) in case you are behind proxy
+
+Step 5: run spark-shell 
+  Error : 
+ C:\Program Files (x86)\spark-2.0.0-bin-hadoop2.7\bin>spark-shell
+'Files' is not recognized as an internal or external command,
+operable program or batch file.
+Failed to find Spark jars directory.
+You need to build Spark before running this program.
+
+Solution : move your spark folder to C:\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+You may end up below error while running Spark in local mode
+16/08/30 17:40:29 ERROR RetryingBlockFetcher: Exception while beginning fetch of 1 outstanding blocks
+java.io.IOException: Failed to connect to /10.91.152.141:62303
+        at org.apache.spark.network.client.TransportClientFactory.createClient(TransportClientFactory.java:228)
+
+Solution for above error
+     Spark/bin > spark-shell --master local
+
+
+Error :
+  ERROR Shell: Failed to locate the winutils binary in the hadoop binary path
+java.io.IOException: Could not locate executable null\bin\winutils.exe in the Hadoop binaries.
+
+Solution :
+     Add new environmental variable HADOOP_HOME and value should be path of the winutils.exe
